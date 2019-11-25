@@ -1,0 +1,50 @@
+{
+  "name": "gamewriter",
+  "version": "0.1.0",
+  "description": "GameWriter uses the document to write over a canavas for increased performance when using text in 2d or 3d games.",
+  "main": "index.js",
+  "scripts": {
+    "tsconfig": "tsc --init --declaration --allowSyntheticDefaultImports --target esnext --outDir lib",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "bundle": "rollup -c",
+    "bundle:watch": "rollup -c --watch",
+    "test": "node test/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robertcorponoi/gamewriter"
+  },
+  "keywords": [
+    "game",
+    "text",
+    "display",
+    "write",
+    "writer",
+    "font",
+    "canvas",
+    "2d",
+    "3d",
+    "webgl"
+  ],
+  "author": "Robert Corponoi",
+  "license": "MIT",
+  "module": "gamewriter.js",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "rollup": "^1.27.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^3.7.2"
+  }
+}
