@@ -57,7 +57,7 @@ describe('Adding text to the game', () => {
     chai.expect(hw.el.textContent).to.equal('Hello World!');
 
   });
-  
+
   it('should create a text node at a specific position', () => {
 
     const hw = gamewriter.addText('Hello World!', 100, 150);
@@ -145,6 +145,28 @@ describe('Adding text to the game', () => {
     chai.expect(hw.el.style.visibility).to.equal('visible');
 
   });
+
+  it('should add classes to each text node added to the game', () => {
+
+    gamewriter = new GameWriter(canvas, { classes: ['hello', 'world'] });
+
+    const hw = gamewriter.addText('Hello World!', 0, 100);
+    const hw2 = gamewriter.addText('Hello World Again!', 0, 125);
+
+    chai.expect(hw.el.className).to.equal('hello world') && chai.expect(hw2.el.className).to.equal('hello world');
+
+  });
+
+  it('should add an id and two classes to a text node', () => {
+
+    gamewriter = new GameWriter(canvas);
+
+    const hw = gamewriter.addText('Hello World!', 0, 150, { id: 'blah', classes: ['still', 'blah'] });
+
+    chai.expect(hw.el.className).to.equal('still blah') && chai.expect(hw.el.id).to.equal('blah');
+
+  });
+
 
 });
 

@@ -65,6 +65,7 @@ along with the canvas, the following options can be passed to GameWriter:
 | canvas              	| HTMLCanvasElement 	| The canvas to draw the text onto                                                                                          	|         	|
 | options             	| Object            	|                                                                                                                           	|         	|
 | options.autoDisplay 	| boolean           	| Indicates whether text nodes are displayed on the canvas after they are created or if they have to be displayed manually. 	| true    	|
+| options.classes       | Array               | Class names to add to each text node created.                                                                               | []        |
 
 ## **API**
 

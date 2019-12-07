@@ -47,6 +47,7 @@ export default class GameWriter {
      * @param {HTMLCanvasElement} canvas A reference to the canvas used to display the game.
      * @param {Object} [options]
      * @param {boolean} [options.autoDisplay=true] Indicates whether text nodes are displayed on the canvas after they are created or if they have to be displayed manually.
+     * @param {Array<string>} [options.classes=[]] Class names to add to each text node created.
      */
     constructor(canvas: HTMLCanvasElement, options?: Object);
     /**
@@ -62,7 +63,9 @@ export default class GameWriter {
      * @param {number} x The x coordinate of the text in relation to the game board.
      * @param {number} y The y coordinate of the text in relation to the game board.
      * @param {Object} [options]
-     * @param {number} [options.size=1] The size of the text. This should be a value from 1-10 with 1 being default and getting larger as it gets closer to 10.   *
+     * @param {number} [options.size=1] The size of the text. This should be a value from 1-10 with 1 being default and getting larger as it gets closer to 10.
+     * @param {string} [options.id] An id to add to the text element.
+     * @param {Array<string>} [options.classes=[]] Classes to add to the text element.
      *
      * @returns {Text} Returns the text node that was created.
      *

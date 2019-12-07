@@ -2,10 +2,7 @@
 
 import uuidv4 from '../utils/uuid';
 import TextOptions from './TextOptions';
-import { getNumberFromStyle, addPxToNumber } from '../utils/style-operations';
-
-import TextPosition from '../interfaces/TextPosition';
-import CanvasPosition from '../interfaces/CanvasPosition';
+import { addPxToNumber } from '../utils/style-operations';
 
 /**
  * The Text module represents a text object added to the game board.
@@ -238,6 +235,8 @@ export default class Text {
 
     this._el.style.fontSize = `${this._options.size}rem`;
 
+    if (this._options.id) this._el.id = this._options.id;
+
     this._el.style.position = 'absolute';
 
     this._el.style.top = addPxToNumber(this._options.canvasPosition.top + this._y);
@@ -245,6 +244,10 @@ export default class Text {
     this._el.style.left = addPxToNumber(this._options.canvasPosition.left + this._x);
 
     this._el.style.visibility = 'hidden';
+
+    this._options.classes.map((cl: string) => this._el.classList.add(cl));
+
+    this._options.globalClasses.map((cl: string) => this._el.classList.add(cl));
 
   }
 

@@ -52,11 +52,17 @@ var TextOptions =
 /**
  * @param {Object} options
  * @param {number} options.size The size of the text. This should be a value from 1-10 with 1 being default and getting larger as it gets closer to 10.
+ * @param {string} options.id An id to add to the text element.
+ * @param {Array<string>} options.classes Classes to add to the text element.
  */
 function TextOptions(options) {
   _classCallCheck(this, TextOptions);
 
   _defineProperty(this, "size", 1);
+
+  _defineProperty(this, "id", void 0);
+
+  _defineProperty(this, "classes", []);
 
   Object.assign(this, options);
 };
@@ -88,6 +94,7 @@ function addPxToNumber(value) {
 /**
  * The Text module represents a text object added to the game board.
  */
+
 var Text =
 /*#__PURE__*/
 function () {
@@ -234,11 +241,22 @@ function () {
   }, {
     key: "_setup",
     value: function _setup() {
+      var _this = this;
+
       this._el.style.fontSize = "".concat(this._options.size, "rem");
+      if (this._options.id) this._el.id = this._options.id;
       this._el.style.position = 'absolute';
       this._el.style.top = addPxToNumber(this._options.canvasPosition.top + this._y);
       this._el.style.left = addPxToNumber(this._options.canvasPosition.left + this._x);
       this._el.style.visibility = 'hidden';
+
+      this._options.classes.map(function (cl) {
+        return _this._el.classList.add(cl);
+      });
+
+      this._options.globalClasses.map(function (cl) {
+        return _this._el.classList.add(cl);
+      });
     }
   }, {
     key: "id",
@@ -347,8 +365,8 @@ function () {
 
 var Options =
 /**
- * Indicates whether text nodes are displayed on the canvas after they are created or
- * if they have to be displayed manually.
+ * Indicates whether text nodes are displayed on the canvas after they are created or if they have to 
+ * be displayed manually.
  * 
  * @property {boolean}
  * 
@@ -356,13 +374,22 @@ var Options =
  */
 
 /**
+ * Class names to add to each text node created.
+ * 
+ * @property {Array<string>}
+ */
+
+/**
  * @param {Object} options
  * @param {boolean} [options.autoDisplay=true] Indicates whether text nodes are displayed on the canvas after they are created or if they have to be displayed manually.
+ * @param {Array<string>} [options.classes=[]] Class names to add to each text node created.
  */
 function Options(options) {
   _classCallCheck(this, Options);
 
   _defineProperty(this, "autoDisplay", true);
+
+  _defineProperty(this, "classes", []);
 
   Object.assign(this, options);
 };
@@ -417,6 +444,7 @@ function () {
    * @param {HTMLCanvasElement} canvas A reference to the canvas used to display the game.
    * @param {Object} [options]
    * @param {boolean} [options.autoDisplay=true] Indicates whether text nodes are displayed on the canvas after they are created or if they have to be displayed manually.
+   * @param {Array<string>} [options.classes=[]] Class names to add to each text node created.
    */
   function GameWriter(canvas) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -472,7 +500,9 @@ function () {
      * @param {number} x The x coordinate of the text in relation to the game board.
      * @param {number} y The y coordinate of the text in relation to the game board.
      * @param {Object} [options]
-     * @param {number} [options.size=1] The size of the text. This should be a value from 1-10 with 1 being default and getting larger as it gets closer to 10.   * 
+     * @param {number} [options.size=1] The size of the text. This should be a value from 1-10 with 1 being default and getting larger as it gets closer to 10.
+     * @param {string} [options.id] An id to add to the text element.
+     * @param {Array<string>} [options.classes=[]] Classes to add to the text element.
      * 
      * @returns {Text} Returns the text node that was created.
      * 
@@ -486,6 +516,7 @@ function () {
     value: function addText(text, x, y) {
       var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
       var opts = Object.assign(options, {
+        globalClasses: this._options.classes,
         canvasPosition: this._canvasPosition
       });
       var node = new Text(text, x, y, opts);
