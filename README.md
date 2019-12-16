@@ -203,6 +203,40 @@ const title = gamewriter.addText('My Game', 100, 150);
 title.text = 'My New Game';
 ```
 
+### **setDynamic**
+
+Sets a piece of the text to be dynamic. This dynamic part of the text can then be easily changed with `changeDynamic`.
+
+| param        | type   | description                                               | default |
+|--------------|--------|-----------------------------------------------------------|---------|
+| text         | string | The part ofo the text that should be dynamic              |         |
+
+**example:**
+
+```js
+const score = gamewriter.addText('Score: 0', 400, 50);
+
+score.setDynamic('0');
+```
+
+### **changeDynamic**
+
+Change the text content of the dynamic text portion of the text.
+
+| param        | type   | description                                                    | default |
+|--------------|--------|----------------------------------------------------------------|---------|
+| text         | string | The text to display in place of the dynamic text.              |         |
+
+**example:**
+
+```js
+const score = gamewriter.addText('Score: 0', 400, 50);
+
+score.setDynamic('0');
+
+score.changeDynamic('5');
+```
+
 ### **hide**
 
 Hides the text.

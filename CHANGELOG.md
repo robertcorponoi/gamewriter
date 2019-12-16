@@ -1,3 +1,9 @@
+1.0.0 / 2019-12-16
+==================
+* [FEATURE] Added `setDynamic` and `changeDynamic` to set a part of the text that can be change easily.
+* [MISC] Added documentation and testing for `setDynamic` and `changeDynamic`.
+* [MISC] Updated dependencies to their latest versions.
+
 0.2.0 / 2019-12-06
 ==================
 * [FEATURE] Added an option that can be passed to the gamewriter instance to add class names to each text node created.

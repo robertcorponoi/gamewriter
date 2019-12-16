@@ -1,7 +1,8 @@
 'use strict'
 
-import uuidv4 from '../utils/uuid';
 import TextOptions from './TextOptions';
+
+import uuidv4 from '../utils/uuid';
 import { addPxToNumber } from '../utils/style-operations';
 
 /**
@@ -73,6 +74,24 @@ export default class Text {
   private _size: number;
 
   /**
+   * The part of the text that is dynamic.
+   * 
+   * @private
+   * 
+   * @property {string}
+   */
+  private _dynamicText?: string;
+
+  /**
+   * The original text unaltered by dynamic parts.
+   * 
+   * @private
+   * 
+   * @property {string}
+   */
+  private _originalText: string;
+
+  /**
    * @param {string} text The text to display.
    * @param {number} x The x coordinate of the text in relation to the game board.
    * @param {number} y The y coordinate of the text in relation to the game board.
@@ -87,6 +106,8 @@ export default class Text {
     this._el.textContent = text;
 
     this._text = text;
+
+    this._originalText = this._text;
 
     this._x = x;
 
@@ -223,6 +244,36 @@ export default class Text {
   show() {
 
     this._el.style.visibility = 'visible';
+
+  }
+
+  /**
+   * Sets a piece of the text to be dynamic.
+   * 
+   * This dynamic part of the text can then be easily changed with `changeDynamic`.
+   * 
+   * @param {string} text The part of the text that should be dynamic.
+   */
+  setDynamic(text: string) {
+
+    if (!this._text.includes(text)) return;
+
+    this._dynamicText = text;
+
+  }
+
+  /**
+   * Change the text content of the dynamic text portion of the text.
+   * 
+   * @param {string} text The text to display in place of the dynamic text.
+   */
+  changeDynamic(text: string) {
+
+    if (!this._dynamicText) return;
+
+    this._text = this._originalText;
+
+    this.text = this._text.replace(this._dynamicText, text);
 
   }
 

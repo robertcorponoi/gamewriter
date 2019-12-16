@@ -35,19 +35,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-/**
- * Generates a v4 uuid.
- * 
- * @returns {string}
- */
-
-function uuidv4() {
-  // @ts-ignore
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (c) {
-    return (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16);
-  });
-}
-
 var TextOptions =
 /**
  * @param {Object} options
@@ -66,6 +53,19 @@ function TextOptions(options) {
 
   Object.assign(this, options);
 };
+
+/**
+ * Generates a v4 uuid.
+ * 
+ * @returns {string}
+ */
+
+function uuidv4() {
+  // @ts-ignore
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (c) {
+    return (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16);
+  });
+}
 
 /**
  * Used to strip px, em, rem, etc. from css styles.
@@ -155,6 +155,22 @@ function () {
    */
 
   /**
+   * The part of the text that is dynamic.
+   * 
+   * @private
+   * 
+   * @property {string}
+   */
+
+  /**
+   * The original text unaltered by dynamic parts.
+   * 
+   * @private
+   * 
+   * @property {string}
+   */
+
+  /**
    * @param {string} text The text to display.
    * @param {number} x The x coordinate of the text in relation to the game board.
    * @param {number} y The y coordinate of the text in relation to the game board.
@@ -183,9 +199,14 @@ function () {
 
     _defineProperty(this, "_size", void 0);
 
+    _defineProperty(this, "_dynamicText", void 0);
+
+    _defineProperty(this, "_originalText", void 0);
+
     this._options = new TextOptions(options);
     this._el.textContent = text;
     this._text = text;
+    this._originalText = this._text;
     this._x = x;
     this._y = y;
     this._size = this._options.size;
@@ -231,6 +252,33 @@ function () {
     key: "show",
     value: function show() {
       this._el.style.visibility = 'visible';
+    }
+    /**
+     * Sets a piece of the text to be dynamic.
+     * 
+     * This dynamic part of the text can then be easily changed with `changeDynamic`.
+     * 
+     * @param {string} text The part of the text that should be dynamic.
+     */
+
+  }, {
+    key: "setDynamic",
+    value: function setDynamic(text) {
+      if (!this._text.includes(text)) return;
+      this._dynamicText = text;
+    }
+    /**
+     * Change the text content of the dynamic text portion of the text.
+     * 
+     * @param {string} text The text to display in place of the dynamic text.
+     */
+
+  }, {
+    key: "changeDynamic",
+    value: function changeDynamic(text) {
+      if (!this._dynamicText) return;
+      this._text = this._originalText;
+      this.text = this._text.replace(this._dynamicText, text);
     }
     /**
      * Sets up the position of this element and then adds it to the document.

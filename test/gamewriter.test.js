@@ -195,3 +195,19 @@ describe('Removing text from the game', () => {
   });
 
 });
+
+describe('Setting dynamic text', () => {
+
+  it('should set the score to be dynamic and change it', () => {
+
+    const score = gamewriter.addText('Score: 0', 150, 400);
+
+    score.setDynamic('0');
+
+    score.changeDynamic('5');
+
+    chai.expect(score.text).to.equal('Score: 5');
+
+  });
+
+});

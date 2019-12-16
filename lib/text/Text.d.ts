@@ -59,6 +59,22 @@ export default class Text {
      */
     private _size;
     /**
+     * The part of the text that is dynamic.
+     *
+     * @private
+     *
+     * @property {string}
+     */
+    private _dynamicText?;
+    /**
+     * The original text unaltered by dynamic parts.
+     *
+     * @private
+     *
+     * @property {string}
+     */
+    private _originalText;
+    /**
      * @param {string} text The text to display.
      * @param {number} x The x coordinate of the text in relation to the game board.
      * @param {number} y The y coordinate of the text in relation to the game board.
@@ -144,6 +160,20 @@ export default class Text {
      * Shows the text element.
      */
     show(): void;
+    /**
+     * Sets a piece of the text to be dynamic.
+     *
+     * This dynamic part of the text can then be easily changed with `changeDynamic`.
+     *
+     * @param {string} text The part of the text that should be dynamic.
+     */
+    setDynamic(text: string): void;
+    /**
+     * Change the text content of the dynamic text portion of the text.
+     *
+     * @param {string} text The text to display in place of the dynamic text.
+     */
+    changeDynamic(text: string): void;
     /**
      * Sets up the position of this element and then adds it to the document.
      *
