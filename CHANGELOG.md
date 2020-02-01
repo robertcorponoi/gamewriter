@@ -1,3 +1,8 @@
+1.0.1 / 2020-02-01
+==================
+* [MISC] Updated dependencies to their latest versions.
+* [MISC] Updated license year to reflect new year.
+
 1.0.0 / 2019-12-16
 ==================
 * [FEATURE] Added `setDynamic` and `changeDynamic` to set a part of the text that can be change easily.

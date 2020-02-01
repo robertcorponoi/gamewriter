@@ -1,6 +1,6 @@
 {
   "name": "gamewriter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GameWriter uses the document to write over a canavas for increased performance when using text in 2d or 3d games.",
   "main": "index.js",
   "scripts": {
@@ -34,17 +34,17 @@
   "license": "MIT",
   "module": "gamewriter.js",
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-proposal-numeric-separator": "^7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-typescript": "^7.7.4",
-    "rollup": "^1.27.13",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-numeric-separator": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "rollup": "^1.31.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.5"
   }
 }
